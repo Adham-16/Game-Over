@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Nerko+One&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/all.min.css" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <section class="games">
+      <header>
+        <img src="img/wraper.png" class="w-100" alt="background-header" />
+      </header>
+      <!-------------------------Start Navbar ---------------------->
+      <nav class="navbar navbar-expand-lg position-sticky z-3 bg-body-tertiary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#"
+            ><img src="img/logo-sm.png" alt="logo" /> GAME REVIEWS
+          </a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link" Games="sports" aria-current="page" href="#"
+                  >SPORTS</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" Games="racing" href="#">RACING</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" Games="sailing" href="#">SAILING</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" Games="permadeath" href="#">PERMADEATH</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" Games="voxel" href="#">VOXEL</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" Games="pixel" href="#">PIXEL</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <!-------------------------End Navbar --------------------------->
+      <!-------------------------Start Display Games ------------------>
+      <main class="container mb-5 my-5 home">
+        <section class="position-relative">
+          <div
+            class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4"
+            id="gameData"
+          ></div>
+        </section>
+      </main>
+
+      <!-------------------------End Display Games ---------------------->
+    </section>
+    <!-------------------------Start Details Game ---------------------->
+    <section class="details d-none" id="details">
+      <div class="container">
+        <header class="hstack justify-content-between">
+          <h1 class="text-center text-white h3 py-4">Details Game</h1>
+          <button class="btn-close btn-close-white" id="btnClose"></button>
+        </header>
+        <div class="row g-4 mb-4" id="detailsContent"></div>
+      </div>
+    </section>
+    <!-------------------------End Details Game ---------------------->
+    <!-------------------------Start spinner --------------------->
+    <div class="spinner" id="spinner">
+      <span class="loader"></span>
+    </div>
+    <!-------------------------End spinner ---------------------->
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>
