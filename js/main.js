@@ -4,48 +4,61 @@ let spinner = document.getElementById("spinner")
 let details = document.getElementById("details")
 let detailsContent = document.getElementById("detailsContent")
 
+
     class Display {
         constructor (Attribute){
             this.Attribute = Attribute
         }
         async DisplayCards() {
-            var arrData = await fetch(`https://free-to-play-games-database.p.rapidapi.com/api/games?category=${this.Attribute}`,{
-                method: 'GET',
-                headers: {
-                    'x-rapidapi-key': '67ee09b6f7msh7ae579cd1d94411p140848jsn66ab464750fc',
-                    'x-rapidapi-host': 'free-to-play-games-database.p.rapidapi.com'
-            }})
-                let finalData = await arrData.json();
-                showContent()
-                for (let i = 0; i < finalData.length; i++) {
-                        displayContainer.innerHTML +=`
-                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
-                        <div class="body-card card" data-id="${finalData[i].id}">
-                            <div class="image">
-                                <img src="${finalData[i].thumbnail}" class="w-100" alt="image-game" />
-                            </div>
-                            <div class="text-game">
-                                <div class="name-game d-flex justify-content-between">
-                                    <h3>${finalData[i].title}</h3>
-                                    <span>Free</span>
-                                </div>
-                                <p>${finalData[i].short_description}</p>
-                                <div class="type d-flex justify-content-between">
-                                <span>${finalData[i].genre}</span>
-                                <span>${finalData[i].platform}</span>
-                            </div>
-                            </div>
+    try {
+        const response = await fetch(`https://free-to-play-games-database.p.rapidapi.com/api/games?category=${this.Attribute}`, {
+            method: 'GET',
+            headers: {
+                'x-rapidapi-key': 'YOUR_API_KEY',
+                'x-rapidapi-host': 'free-to-play-games-database.p.rapidapi.com'
+            }
+        });
+
+        if (!response.ok) throw new Error('Network response was not ok');
+
+        const finalData = await response.json();
+        showContent();
+
+        const cards = finalData.map(game => `
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
+                <div class="body-card card" data-id="${game.id}">
+                    <div class="image">
+                        <img src="${game.thumbnail}" class="w-100" alt="image-game" />
+                    </div>
+                    <div class="text-game">
+                        <div class="name-game d-flex justify-content-between">
+                            <h3>${game.title}</h3>
+                            <span>Free</span>
+                        </div>
+                        <p>${game.short_description}</p>
+                        <div class="type d-flex justify-content-between">
+                            <span>${game.genre}</span>
+                            <span>${game.platform}</span>
                         </div>
                     </div>
-                    `
-                }   
-                $(".body-card").click(function(e){
-                let id = e.target.closest(".body-card").getAttribute("data-id");
-                    const GameDetails = new Details(id)
-                    GameDetails.DisplayDetails()
-                    showDetails()
-                })     
-                }
+                </div>
+            </div>
+        `).join('');
+
+        displayContainer.innerHTML = cards;
+
+        $(".body-card").click(e => {
+            const id = e.target.closest(".body-card").getAttribute("data-id");
+            const GameDetails = new Details(id);
+            GameDetails.DisplayDetails();
+            showDetails();
+        });
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        alert("Error!");
+    }
+}
+
     }
     class Details {
         constructor (id){
